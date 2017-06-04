@@ -1,0 +1,21 @@
+Eu como cliente		quero realizar pedido			para comprar uma bebida
+Eu como cliente		quero cancelar pedido			para não ter que pagar
+Eu como cliente		quero realizar pagamento do pedido	para obter o produto em meu empreendimento
+
+Eu como gerente 	quero cadastrar fornecedores		para ter informações do vendedor
+Eu como gerente 	quero excluir fornecedores		para não ter mais vinculo com este
+Eu como gerente 	quero atualizar dados dos fornecedores	para manter informações consistentes
+Eu como gerente 	quero consultar fornecedor		para saber se ja consta no banco de dados suas informações
+Eu como gerente		quero verificar o estoque		para realizar o pedido com o fornecedor
+Eu como gerente		quero cancelar a compra
+Eu como gerente 	quero pagar a compra
+Eu como gerente		quero registrar a compra
+Eu como gerente		quero cadastrar clientes		para ter informações do comprador
+Eu como gerente 	quero atualizar dados dos compradores	para manter informações consistentes
+Eu como gerente 	quero consultar compradores		para saber se ja consta no banco de dados suas informações
+Eu como gerente 	quero excluir clientes			para não ter mais vinculo com este
+Eu como gerente		quero verificar pendencias		para poder suspender o vinculo com os compradores 
+
+Eu como fornecedor	quero realizar uma venda		para que o gerente compre
+
+
