@@ -13,11 +13,15 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import my.distbebidas.conexaobd.conexaoBD;
 
+
 /**
  *
  * @author Avell
  */
 public class TelaEstoque extends javax.swing.JFrame {
+    public String informacaoTabelaCOD;
+    public int linha;
+    
 
     /**
      * Creates new form TelaEstoque
@@ -63,13 +67,34 @@ public class TelaEstoque extends javax.swing.JFrame {
                 "Codigo", "Nome", "Quantidade", "Preço Venda", "Preço Compra", "Validade"
             }
         ));
+        tabelaConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaConsultaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaConsulta);
 
         jLabel1.setText("ESTOQUE");
 
         jButtonAltQnt.setText("Alterar Quantidade");
+        jButtonAltQnt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAltQntActionPerformed(evt);
+            }
+        });
+
+        jTextFieldConsultaEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldConsultaEstoqueActionPerformed(evt);
+            }
+        });
 
         jButtonConsultar.setText("Consultar");
+        jButtonConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarActionPerformed(evt);
+            }
+        });
 
         jButtonMostrarTodos.setText("Mostrar Todos");
         jButtonMostrarTodos.addActionListener(new java.awt.event.ActionListener() {
@@ -79,6 +104,11 @@ public class TelaEstoque extends javax.swing.JFrame {
         });
 
         jButtonRemProduto.setText("Remover Produto");
+        jButtonRemProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemProdutoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Consulta:");
 
@@ -194,6 +224,79 @@ public class TelaEstoque extends javax.swing.JFrame {
         new DistBebidasUI().setVisible(true);
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
+    private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
+        // TODO add your handling code here:
+        ArrayList<EstoqueDAO> p = new ArrayList<EstoqueDAO>();
+            conexaoBD cb = new conexaoBD();
+            
+            try{
+                p = (ArrayList<EstoqueDAO>) cb.consultaEspec(jTextFieldConsultaEstoque.getText());
+            } catch (SQLException ex) {
+            
+                Logger.getLogger(TelaEstoque.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            if(p.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Não há registros que satisfazem a pesquisa!");
+                return;
+            }
+            
+            DefaultTableModel modelo = (DefaultTableModel) tabelaConsulta.getModel();
+            
+            modelo.setNumRows(0);
+            
+            Object[] fila = new Object[modelo.getColumnCount()];
+            for(int i=0; i < p.size(); i++){
+                modelo.addRow(new Object[]{
+                    p.get(i).getCod_produto(),
+                    p.get(i).getNome_produto(),
+                    p.get(i).getQnt_produto(),
+                    p.get(i).getPreco_produto_compra(),
+                    p.get(i).getPreco_produto_venda(),
+                    p.get(i).getValidade_produto()
+                });
+                
+            }
+    }//GEN-LAST:event_jButtonConsultarActionPerformed
+
+    private void jTextFieldConsultaEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldConsultaEstoqueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldConsultaEstoqueActionPerformed
+
+    private void tabelaConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaConsultaMouseClicked
+        // TODO add your handling code here:
+        informacaoTabelaCOD = info();
+        EstoqueDAO e = new EstoqueDAO();
+        e.setCodigotabela(Integer.parseInt(informacaoTabelaCOD));
+        System.out.println("INFO: "+informacaoTabelaCOD);
+    }//GEN-LAST:event_tabelaConsultaMouseClicked
+
+    private void jButtonAltQntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltQntActionPerformed
+        // TODO add your handling code here: ALTERAR QUANTIDADE
+        AtualizarQntEstoque atualizaEstoque = new AtualizarQntEstoque();
+        atualizaEstoque.jTextFieldQNT.setText(tabelaConsulta.getModel().getValueAt(linha, 2).toString());
+        atualizaEstoque.jLabelCodigo.setText(informacaoTabelaCOD);
+        atualizaEstoque.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonAltQntActionPerformed
+
+    private void jButtonRemProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemProdutoActionPerformed
+        // TODO add your handling code here:
+        conexaoBD conexao = new conexaoBD();
+        try{
+            conexao.excluirProduto(Integer.parseInt(informacaoTabelaCOD));
+            JOptionPane.showMessageDialog(null, "Removido com sucesso!");
+            
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,""+ex,"Erro",JOptionPane.ERROR_MESSAGE,null);
+        }
+    }//GEN-LAST:event_jButtonRemProdutoActionPerformed
+public String info(){
+        linha = tabelaConsulta.getSelectedRow();
+        String info = tabelaConsulta.getModel().getValueAt(linha, 0).toString();
+        
+        return info;
+    }
     /**
      * @param args the command line arguments
      */

@@ -6,6 +6,8 @@
 package my.distbebidas;
 
 import java.sql.Date;
+import my.distbebidas.conexaobd.conexaoBD;
+
 
 
 
@@ -20,6 +22,8 @@ public class EstoqueDAO {
     private float preco_produto_compra;
     private float preco_produto_venda;
     private Date validade_produto;
+    private int codigotabela;
+    private int qnttabela;
 
     public EstoqueDAO(int cod_produto, String nome_produto, int qnt_produto, float preco_produto_compra, float preco_produto_venda, Date validade_produto){
         this.cod_produto=cod_produto;
@@ -33,6 +37,22 @@ public class EstoqueDAO {
     public EstoqueDAO(){
     }
     
+    
+ 
+    
+    
+     public boolean atualizaQuantidade(int cod_produto, int qnt_produto) throws EntradaInvalidaException {
+        conexaoBD conexao = new conexaoBD();
+        
+        try{
+            conexao.atualizaQnt(cod_produto, qnt_produto);
+            return true;
+        }
+        catch(Exception ex){
+            throw new EntradaInvalidaException(""+ex);
+        }
+       
+    }
     /**
      * @return the cod_produto
      */
@@ -115,6 +135,34 @@ public class EstoqueDAO {
      */
     public void setValidade_produto(Date validade_produto) {
         this.validade_produto = validade_produto;
+    }
+
+    /**
+     * @return the codigotabela
+     */
+    public int getCodigotabela() {
+        return codigotabela;
+    }
+
+    /**
+     * @param codigotabela the codigotabela to set
+     */
+    public void setCodigotabela(int codigotabela) {
+        this.codigotabela = codigotabela;
+    }
+
+    /**
+     * @return the qnttabela
+     */
+    public int getQnttabela() {
+        return qnttabela;
+    }
+
+    /**
+     * @param qnttabela the qnttabela to set
+     */
+    public void setQnttabela(int qnttabela) {
+        this.qnttabela = qnttabela;
     }
     
     

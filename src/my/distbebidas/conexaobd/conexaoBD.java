@@ -114,7 +114,49 @@ public class conexaoBD {
        return clis; 
         
     }
-    
+        public List<EstoqueDAO> consultaEspec(String nome) throws SQLException{
+        
+        List<EstoqueDAO> clis = new ArrayList<>();
+        getConnection();
+        
+        try (PreparedStatement pstm = conexao.prepareStatement("select cod_produto, nome_produto, qnt_produto, preco_produto_compra, preco_produto_venda, validade_produto from ESTOQUE where nome_produto like '%"+nome+"%'")) {
+            ResultSet rs = pstm.executeQuery();
+           
+            while(rs.next()){              
+                EstoqueDAO est = new EstoqueDAO();
+                
+                est.setCod_produto(rs.getInt("cod_produto"));
+                est.setNome_produto(rs.getString("nome_produto"));
+                est.setQnt_produto(rs.getInt("qnt_produto"));
+                est.setPreco_produto_compra(rs.getFloat("preco_produto_compra"));
+                est.setPreco_produto_venda(rs.getFloat("preco_produto_venda"));
+                est.setValidade_produto(rs.getDate("validade_produto"));
+                
+            clis.add(est);
+            }   
+        }
+        
+       desconBD();
+        
+       return clis; 
+        }
+        
+         public void atualizaQnt(int cod_produto, int qnt_produto) throws SQLException, EntradaInvalidaException{
+             getConnection();
+             state = conexao.createStatement();
+ 
+            state.executeUpdate("update ESTOQUE set qnt_produto= "+qnt_produto+" where cod_produto= "+cod_produto+";");
+            desconBD();
+         }
+        
+        public boolean excluirProduto(int codigo) throws SQLException{
+        getConnection();
+        state = conexao.createStatement();
+        state.executeUpdate("delete from ESTOQUE where cod_produto = '"+codigo+"'");
+        desconBD(); 
+        return true;
+    }
+       
 }
     
 
