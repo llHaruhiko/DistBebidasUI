@@ -2,15 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Avell/Desktop/DistBebidasUI/src/my/distbebidas/ComprasDAO.java</file>
-            <file>file:/C:/Users/Avell/Desktop/DistBebidasUI/src/my/distbebidas/DistBebidasUI.java</file>
-            <file>file:/C:/Users/Avell/Desktop/DistBebidasUI/src/my/distbebidas/TelaCadastroCliente.java</file>
-            <file>file:/C:/Users/Avell/Desktop/DistBebidasUI/src/my/distbebidas/conexaobd/conexaoBD.java</file>
-            <file>file:/C:/Users/Avell/Desktop/DistBebidasUI/src/my/distbebidas/validaEntrada.java</file>
-            <file>file:/C:/Users/Avell/Desktop/DistBebidasUI/src/my/distbebidas/TelaCadastroFornecedor.java</file>
-            <file>file:/C:/Users/Avell/Desktop/DistBebidasUI/src/my/distbebidas/FornecedorDAO.java</file>
-            <file>file:/C:/Users/Avell/Desktop/DistBebidasUI/src/my/distbebidas/ClienteDAO.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
