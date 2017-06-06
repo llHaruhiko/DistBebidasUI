@@ -40,6 +40,7 @@ public class DistBebidasUI extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         jCheckBoxMenuItem1.setSelected(true);
@@ -95,6 +96,15 @@ public class DistBebidasUI extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Estoque");
+
+        jMenuItem2.setText("Consultar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem2);
+
         jMenuBar1.add(jMenu5);
 
         jMenu3.setText("Sair");
@@ -151,6 +161,12 @@ public class DistBebidasUI extends javax.swing.JFrame {
         DistBebidasUI.this.dispose();
     }//GEN-LAST:event_jMenuItemCadastroClienteActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        new TelaEstoque().setVisible(true);
+        DistBebidasUI.this.dispose();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -198,6 +214,7 @@ public class DistBebidasUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuCadastrar;
     private javax.swing.JMenu jMenuGerenciar;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemCadastroCliente;
