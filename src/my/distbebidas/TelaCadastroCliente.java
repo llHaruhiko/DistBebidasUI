@@ -299,6 +299,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jFormattedTextFieldCNPJClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCNPJClienteActionPerformed
@@ -334,7 +335,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             jFormattedTextFieldCEP.getText().isEmpty() ||  (!jFormattedTextFieldTelefone.getText().equals(jFormattedTextFieldTelefone.getValue()))){
             JOptionPane.showMessageDialog(null,"Alguns dos campos obrigatórios estão vazios!");
         }else{           
-                if(cliente.insereCliente()){
+                if(cliente.insereCliente()==1){
                     JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
                     dispose();
                     new DistBebidasUI().setVisible(true);

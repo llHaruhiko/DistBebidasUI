@@ -132,17 +132,17 @@ public class FornecedorDAO {
         /*Para usar nos testes*/
     }
     
-        public boolean insereFornecedor() /*throws EntradaInvalidaException, SQLException*/{
+        public int insereFornecedor() /*throws EntradaInvalidaException, SQLException*/{
         conexaoBD conexao = new conexaoBD();
          
         try{
             conexao.insereDadosFornecedor(this);
-            return true;
+            return 1;
         }
         catch(Exception ex){
             /*throw new EntradaInvalidaException(""+ex);*/
             System.out.println("Houve um problema ao inserir. Erro: "+ex);
-            return false;
+            return 0;
         }
     }
         

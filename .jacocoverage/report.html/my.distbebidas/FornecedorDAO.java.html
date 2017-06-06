@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>FornecedorDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;DistBebidasUI&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">my.distbebidas</a> &gt; <span class="el_source">FornecedorDAO.java</span></div><h1>FornecedorDAO.java</h1><pre class="source lang-java linenums">package my.distbebidas;
+import java.sql.SQLException;
+import my.distbebidas.conexaobd.conexaoBD;
+
+public class FornecedorDAO {
+    private String cnpj;
+    private String inscricaoestadual;
+    private String razaosocial;
+    private String nomefantasia;
+    private String endereco;
+    private String bairro;
+    private String cep;
+    private String cidade;
+    private String email;
+    private String telefone;
+    private String celular;
+    private String uf;
+
+    public FornecedorDAO(String cnpj, String inscricaoestadual, String razaosocial, String nomefantasia, String endereco,
+<span class="nc" id="L20">            String bairro, String cep, String cidade, String email, String telefone, String celular, String uf) {</span>
+<span class="nc" id="L21">        this.cnpj = cnpj;</span>
+<span class="nc" id="L22">        this.inscricaoestadual = inscricaoestadual;</span>
+<span class="nc" id="L23">        this.razaosocial = razaosocial;</span>
+<span class="nc" id="L24">        this.nomefantasia = nomefantasia;</span>
+<span class="nc" id="L25">        this.endereco = endereco;</span>
+<span class="nc" id="L26">        this.bairro = bairro;</span>
+<span class="nc" id="L27">        this.cep = cep;</span>
+<span class="nc" id="L28">        this.cidade = cidade;</span>
+<span class="nc" id="L29">        this.email = email;</span>
+<span class="nc" id="L30">        this.telefone = telefone;</span>
+<span class="nc" id="L31">        this.celular = celular;</span>
+<span class="nc" id="L32">        this.uf = uf;</span>
+<span class="nc" id="L33">    }</span>
+    
+    public void setCnpj(String cnpj) {
+<span class="nc" id="L36">        this.cnpj = cnpj;</span>
+<span class="nc" id="L37">    }</span>
+
+    public void setInscricaoestadual(String inscricaoestadual) {
+<span class="nc" id="L40">        this.inscricaoestadual = inscricaoestadual;</span>
+<span class="nc" id="L41">    }</span>
+
+    public void setRazaosocial(String razaosocial) {
+<span class="nc" id="L44">        this.razaosocial = razaosocial;</span>
+<span class="nc" id="L45">    }</span>
+
+    public void setNomefantasia(String nomefantasia) {
+<span class="nc" id="L48">        this.nomefantasia = nomefantasia;</span>
+<span class="nc" id="L49">    }</span>
+
+    public void setEndereco(String endereco) {
+<span class="nc" id="L52">        this.endereco = endereco;</span>
+<span class="nc" id="L53">    }</span>
+
+    public void setBairro(String bairro) {
+<span class="nc" id="L56">        this.bairro = bairro;</span>
+<span class="nc" id="L57">    }</span>
+
+    public void setCep(String cep) {
+<span class="nc" id="L60">        this.cep = cep;</span>
+<span class="nc" id="L61">    }</span>
+
+    public void setCidade(String cidade) {
+<span class="nc" id="L64">        this.cidade = cidade;</span>
+<span class="nc" id="L65">    }</span>
+
+    public void setEmail(String email) {
+<span class="nc" id="L68">        this.email = email;</span>
+<span class="nc" id="L69">    }</span>
+
+    public void setTelefone(String telefone) {
+<span class="nc" id="L72">        this.telefone = telefone;</span>
+<span class="nc" id="L73">    }</span>
+    
+    public void setCelular(String celular) {
+<span class="nc" id="L76">        this.celular = celular;</span>
+<span class="nc" id="L77">    }</span>
+
+    public void setUf(String uf) {
+<span class="nc" id="L80">        this.uf = uf;</span>
+<span class="nc" id="L81">    }</span>
+
+    public String getCnpj() {
+<span class="nc" id="L84">        return cnpj;</span>
+    }
+
+    public String getInscricaoestadual() {
+<span class="nc" id="L88">        return inscricaoestadual;</span>
+    }
+
+    public String getRazaosocial() {
+<span class="nc" id="L92">        return razaosocial;</span>
+    }
+
+    public String getNomefantasia() {
+<span class="nc" id="L96">        return nomefantasia;</span>
+    }
+
+    public String getEndereco() {
+<span class="nc" id="L100">        return endereco;</span>
+    }
+
+    public String getBairro() {
+<span class="nc" id="L104">        return bairro;</span>
+    }
+
+    public String getCep() {
+<span class="nc" id="L108">        return cep;</span>
+    }
+
+    public String getCidade() {
+<span class="nc" id="L112">        return cidade;</span>
+    }
+
+    public String getEmail() {
+<span class="nc" id="L116">        return email;</span>
+    }
+
+    public String getTelefone() {
+<span class="nc" id="L120">        return telefone;</span>
+    }
+    
+    public String getCelular() {
+<span class="nc" id="L124">        return celular;</span>
+    }
+
+    public String getUf() {
+<span class="nc" id="L128">        return uf;</span>
+    }
+    
+<span class="nc" id="L131">    public FornecedorDAO(){</span>
+        /*Para usar nos testes*/
+<span class="nc" id="L133">    }</span>
+    
+        public int insereFornecedor() /*throws EntradaInvalidaException, SQLException*/{
+<span class="nc" id="L136">        conexaoBD conexao = new conexaoBD();</span>
+         
+        try{
+<span class="nc" id="L139">            conexao.insereDadosFornecedor(this);</span>
+<span class="nc" id="L140">            return 1;</span>
+        }
+<span class="nc" id="L142">        catch(Exception ex){</span>
+            /*throw new EntradaInvalidaException(&quot;&quot;+ex);*/
+<span class="nc" id="L144">            System.out.println(&quot;Houve um problema ao inserir. Erro: &quot;+ex);</span>
+<span class="nc" id="L145">            return 0;</span>
+        }
+    }
+        
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

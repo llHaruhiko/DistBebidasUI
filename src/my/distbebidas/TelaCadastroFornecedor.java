@@ -350,7 +350,7 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
                     jFormattedTextFieldCEP.getText().isEmpty() ||  (!jFormattedTextFieldTelefone.getText().equals(jFormattedTextFieldTelefone.getValue()))){
                 JOptionPane.showMessageDialog(null,"Alguns dos campos obrigatórios estão vazios!");
             }else{
-                if(fornece.insereFornecedor()){
+                if(fornece.insereFornecedor()==1){
                     JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
                     dispose();
                     new DistBebidasUI().setVisible(true);

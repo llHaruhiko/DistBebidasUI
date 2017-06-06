@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>EstoqueDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;DistBebidasUI&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">my.distbebidas</a> &gt; <span class="el_source">EstoqueDAO.java</span></div><h1>EstoqueDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package my.distbebidas;
+
+import java.sql.Date;
+import my.distbebidas.conexaobd.conexaoBD;
+
+
+
+
+/**
+ *
+ * @author Avell
+ */
+public class EstoqueDAO {
+    private int cod_produto;
+    private String nome_produto;
+    private int qnt_produto;
+    private float preco_produto_compra;
+    private float preco_produto_venda;
+    private Date validade_produto;
+    private int codigotabela;
+    private int qnttabela;
+
+<span class="nc" id="L28">    public EstoqueDAO(int cod_produto, String nome_produto, int qnt_produto, float preco_produto_compra, float preco_produto_venda, Date validade_produto){</span>
+<span class="nc" id="L29">        this.cod_produto=cod_produto;</span>
+<span class="nc" id="L30">        this.nome_produto=nome_produto;</span>
+<span class="nc" id="L31">        this.qnt_produto=qnt_produto;</span>
+<span class="nc" id="L32">        this.preco_produto_compra=preco_produto_compra;</span>
+<span class="nc" id="L33">        this.preco_produto_venda=preco_produto_venda;</span>
+<span class="nc" id="L34">        this.validade_produto=validade_produto;</span>
+<span class="nc" id="L35">    }</span>
+    
+<span class="nc" id="L37">    public EstoqueDAO(){</span>
+<span class="nc" id="L38">    }</span>
+    
+    
+ 
+    
+    
+     public boolean atualizaQuantidade(int cod_produto, int qnt_produto) throws EntradaInvalidaException {
+<span class="nc" id="L45">        conexaoBD conexao = new conexaoBD();</span>
+        
+        try{
+<span class="nc" id="L48">            conexao.atualizaQnt(cod_produto, qnt_produto);</span>
+<span class="nc" id="L49">            return true;</span>
+        }
+<span class="nc" id="L51">        catch(Exception ex){</span>
+<span class="nc" id="L52">            throw new EntradaInvalidaException(&quot;&quot;+ex);</span>
+        }
+       
+    }
+    /**
+     * @return the cod_produto
+     */
+    public int getCod_produto() {
+<span class="nc" id="L60">        return cod_produto;</span>
+    }
+
+    /**
+     * @param cod_produto the cod_produto to set
+     */
+    public void setCod_produto(int cod_produto) {
+<span class="nc" id="L67">        this.cod_produto = cod_produto;</span>
+<span class="nc" id="L68">    }</span>
+
+    /**
+     * @return the nome_produto
+     */
+    public String getNome_produto() {
+<span class="nc" id="L74">        return nome_produto;</span>
+    }
+
+    /**
+     * @param nome_produto the nome_produto to set
+     */
+    public void setNome_produto(String nome_produto) {
+<span class="nc" id="L81">        this.nome_produto = nome_produto;</span>
+<span class="nc" id="L82">    }</span>
+
+    /**
+     * @return the qnt_produto
+     */
+    public int getQnt_produto() {
+<span class="nc" id="L88">        return qnt_produto;</span>
+    }
+
+    /**
+     * @param qnt_produto the qnt_produto to set
+     */
+    public void setQnt_produto(int qnt_produto) {
+<span class="nc" id="L95">        this.qnt_produto = qnt_produto;</span>
+<span class="nc" id="L96">    }</span>
+
+    /**
+     * @return the preco_produto_compra
+     */
+    public float getPreco_produto_compra() {
+<span class="nc" id="L102">        return preco_produto_compra;</span>
+    }
+
+    /**
+     * @param preco_produto_compra the preco_produto_compra to set
+     */
+    public void setPreco_produto_compra(float preco_produto_compra) {
+<span class="nc" id="L109">        this.preco_produto_compra = preco_produto_compra;</span>
+<span class="nc" id="L110">    }</span>
+
+    /**
+     * @return the preco_produto_venda
+     */
+    public float getPreco_produto_venda() {
+<span class="nc" id="L116">        return preco_produto_venda;</span>
+    }
+
+    /**
+     * @param preco_produto_venda the preco_produto_venda to set
+     */
+    public void setPreco_produto_venda(float preco_produto_venda) {
+<span class="nc" id="L123">        this.preco_produto_venda = preco_produto_venda;</span>
+<span class="nc" id="L124">    }</span>
+
+    /**
+     * @return the validade_produto
+     */
+    public Date getValidade_produto() {
+<span class="nc" id="L130">        return validade_produto;</span>
+    }
+
+    /**
+     * @param validade_produto the validade_produto to set
+     */
+    public void setValidade_produto(Date validade_produto) {
+<span class="nc" id="L137">        this.validade_produto = validade_produto;</span>
+<span class="nc" id="L138">    }</span>
+
+    /**
+     * @return the codigotabela
+     */
+    public int getCodigotabela() {
+<span class="nc" id="L144">        return codigotabela;</span>
+    }
+
+    /**
+     * @param codigotabela the codigotabela to set
+     */
+    public void setCodigotabela(int codigotabela) {
+<span class="nc" id="L151">        this.codigotabela = codigotabela;</span>
+<span class="nc" id="L152">    }</span>
+
+    /**
+     * @return the qnttabela
+     */
+    public int getQnttabela() {
+<span class="nc" id="L158">        return qnttabela;</span>
+    }
+
+    /**
+     * @param qnttabela the qnttabela to set
+     */
+    public void setQnttabela(int qnttabela) {
+<span class="nc" id="L165">        this.qnttabela = qnttabela;</span>
+<span class="nc" id="L166">    }</span>
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

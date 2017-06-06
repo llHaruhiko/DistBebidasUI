@@ -40,17 +40,17 @@ public class ClienteDAO {
     }
     
         /*Utilizado nos testes (retorna true/false para realizar as comparações)*/
-    public boolean insereCliente(){
+    public int insereCliente(){
         conexaoBD conexao = new conexaoBD();
          
         try{
             conexao.insereDadosCliente(this);
-            return true;
+            return 1;
         }
         catch(Exception ex){
             //throw new EntradaInvalidaException(""+ex);
             System.out.println("Houve um problema ao inserir. Erro: "+ex);
-            return false;
+            return 0;
         }
     }
 

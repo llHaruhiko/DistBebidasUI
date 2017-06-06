@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>conexaoBD.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;DistBebidasUI&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">my.distbebidas.conexaobd</a> &gt; <span class="el_source">conexaoBD.java</span></div><h1>conexaoBD.java</h1><pre class="source lang-java linenums">package my.distbebidas.conexaobd;
+import my.distbebidas.FornecedorDAO;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import my.distbebidas.TelaCadastroFornecedor;
+import my.distbebidas.EntradaInvalidaException;
+import my.distbebidas.ComprasDAO;
+import my.distbebidas.VendasDAO;
+import my.distbebidas.ClienteDAO;
+import my.distbebidas.EstoqueDAO;
+
+<span class="fc" id="L23">public class conexaoBD {</span>
+    Connection conexao;
+    private Statement state;
+    
+    public Connection getConnection(){
+        try{
+<span class="fc" id="L29">            conexao = DriverManager.getConnection(&quot;jdbc:postgresql://localhost:5432/postgres&quot;,&quot;postgres&quot; ,&quot;postgres&quot;);</span>
+<span class="fc" id="L30">            return conexao;</span>
+        }
+<span class="nc" id="L32">        catch(SQLException e){</span>
+<span class="nc" id="L33">            throw new RuntimeException(e);</span>
+        }
+    }
+    
+    /*Desconecta do BD*/
+    public void desconBD(){
+        try{
+<span class="nc" id="L40">            conexao.close();</span>
+<span class="nc" id="L41">            System.out.println(&quot;Conexão finalizada com sucesso&quot;);</span>
+        }
+<span class="nc" id="L43">        catch(Exception ex){</span>
+<span class="nc" id="L44">            System.out.println(&quot;Erro ao desconectar: &quot;+ex.getMessage());</span>
+<span class="nc" id="L45">        }</span>
+<span class="nc" id="L46">    }</span>
+    
+    public void insereDadosFornecedor(FornecedorDAO f) throws SQLException, EntradaInvalidaException{
+<span class="nc" id="L49">        getConnection();</span>
+<span class="nc" id="L50">        state = conexao.createStatement();</span>
+        
+<span class="nc" id="L52">        state.executeUpdate(&quot;INSERT INTO FORNECEDOR (CNPJ,INSCRICAO_ESTADUAL,RAZAO_SOCIAL,NOME_FANTASIA,ENDERECO,BAIRRO,CEP,CIDADE,UF,EMAIL,TELEFONE,CELULAR)&quot;</span>
+<span class="nc" id="L53">                    + &quot;VALUES ('&quot;+f.getCnpj()+&quot;','&quot;+f.getInscricaoestadual()+&quot;','&quot;+f.getRazaosocial()+&quot;','&quot;+f.getNomefantasia()+&quot;','&quot;+f.getEndereco()+&quot;','&quot;+f.getBairro()+&quot;','&quot;+f.getCep()+&quot;',&quot;</span>
+<span class="nc" id="L54">                    + &quot;'&quot;+f.getCidade()+&quot;','&quot;+f.getUf()+&quot;','&quot;+f.getEmail()+&quot;','&quot;+f.getTelefone()+&quot;','&quot;+f.getCelular()+&quot;');&quot;);</span>
+
+<span class="nc" id="L56">        desconBD();</span>
+<span class="nc" id="L57">    }</span>
+    
+   
+    public void insereDadosCliente(ClienteDAO c) throws SQLException, EntradaInvalidaException{
+<span class="nc" id="L61">        getConnection();</span>
+<span class="nc" id="L62">        state = conexao.createStatement();</span>
+        
+<span class="nc" id="L64">        state.executeUpdate(&quot;INSERT INTO CLIENTE (CNPJ,INSCRICAO_ESTADUAL,NOME_CLIENTE,ENDERECO,BAIRRO,CEP,CIDADE,UF,EMAIL,TELEFONE,CELULAR)&quot;</span>
+<span class="nc" id="L65">                    + &quot;VALUES ('&quot;+c.getCnpj()+&quot;','&quot;+c.getInscricaoestadual()+&quot;','&quot;+c.getNome()+&quot;','&quot;+c.getEndereco()+&quot;','&quot;+c.getBairro()+&quot;','&quot;+c.getCep()+&quot;',&quot;</span>
+<span class="nc" id="L66">                    + &quot;'&quot;+c.getCidade()+&quot;','&quot;+c.getUf()+&quot;','&quot;+c.getEmail()+&quot;','&quot;+c.getTelefone()+&quot;','&quot;+c.getCelular()+&quot;');&quot;);</span>
+
+<span class="nc" id="L68">        desconBD();</span>
+<span class="nc" id="L69">    }</span>
+     
+     public void insereDadosCompras(ComprasDAO co) throws SQLException, EntradaInvalidaException{
+<span class="nc" id="L72">        getConnection();</span>
+<span class="nc" id="L73">        state = conexao.createStatement();</span>
+        
+<span class="nc" id="L75">        state.executeUpdate(&quot;INSERT INTO COMPRAS (ID, NOME_PRODUTO,QUANTIDADE, DATA, RAZAO_EMPRESA)&quot;</span>
+<span class="nc" id="L76">                    + &quot;VALUES ('&quot;+co.getIdcompra()+&quot;','&quot;+co.getNomeproduto()+&quot;','&quot;+co.getQuantidade()+&quot;','&quot;+co.getData()+&quot;','&quot;+co.getRazaosocial()+&quot;');&quot;);</span>
+
+<span class="nc" id="L78">        desconBD();</span>
+<span class="nc" id="L79">    }</span>
+    
+    public void insereDadosVendas(VendasDAO ven) throws SQLException, EntradaInvalidaException{
+<span class="nc" id="L82">        getConnection();</span>
+<span class="nc" id="L83">        state = conexao.createStatement();</span>
+        
+<span class="nc" id="L85">        state.executeUpdate(&quot;INSERT INTO VENDAS (ID, NOME_PRODUTO, QUANTIDADE, DATA, NOME_CLIENTE, CNPJ_CLIENTE)&quot;</span>
+<span class="nc" id="L86">                    + &quot;VALUES ('&quot;+ven.getIdpedido()+&quot;','&quot;+ven.getNomeproduto()+&quot;','&quot;+ven.getQuantidade()+&quot;','&quot;+ven.getData()+&quot;','&quot;+ven.getNomecliente()+&quot;','&quot;+ven.getCnpjcliente()+&quot;');&quot;);</span>
+
+<span class="nc" id="L88">        desconBD();</span>
+<span class="nc" id="L89">    }</span>
+    public List&lt;EstoqueDAO&gt; consultaTodos() throws SQLException{
+        
+<span class="nc" id="L92">    List&lt;EstoqueDAO&gt; est = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L93">        getConnection();</span>
+        
+<span class="nc" id="L95">        try (PreparedStatement pstm = conexao.prepareStatement(&quot;select cod_produto, nome_produto, qnt_produto, preco_produto_compra, preco_produto_venda, validade_produto from ESTOQUE&quot;)) {</span>
+<span class="nc" id="L96">            ResultSet rs = pstm.executeQuery();</span>
+           
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            while(rs.next()){              </span>
+<span class="nc" id="L99">                EstoqueDAO e = new EstoqueDAO();</span>
+                
+<span class="nc" id="L101">                e.setCod_produto(rs.getInt(&quot;cod_produto&quot;));</span>
+<span class="nc" id="L102">                e.setNome_produto(rs.getString(&quot;nome_produto&quot;));</span>
+<span class="nc" id="L103">                e.setQnt_produto(rs.getInt(&quot;qnt_produto&quot;));</span>
+<span class="nc" id="L104">                e.setPreco_produto_compra(rs.getFloat(&quot;preco_produto_compra&quot;));</span>
+<span class="nc" id="L105">                e.setPreco_produto_venda(rs.getFloat(&quot;preco_produto_venda&quot;));</span>
+<span class="nc" id="L106">                e.setValidade_produto(rs.getDate(&quot;validade_produto&quot;));</span>
+                
+<span class="nc" id="L108">            est.add(e);</span>
+<span class="nc" id="L109">            }   </span>
+<span class="nc bnc" id="L110" title="All 8 branches missed.">        }</span>
+        
+<span class="nc" id="L112">       desconBD();</span>
+        
+<span class="nc" id="L114">       return est; </span>
+        
+    }
+        public List&lt;EstoqueDAO&gt; consultaEspec(String nome) throws SQLException{
+        
+<span class="nc" id="L119">        List&lt;EstoqueDAO&gt; est = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L120">        getConnection();</span>
+        
+<span class="nc" id="L122">        try (PreparedStatement pstm = conexao.prepareStatement(&quot;select cod_produto, nome_produto, qnt_produto, preco_produto_compra, preco_produto_venda, validade_produto from ESTOQUE where nome_produto like '%&quot;+nome+&quot;%'&quot;)) {</span>
+<span class="nc" id="L123">            ResultSet rs = pstm.executeQuery();</span>
+           
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            while(rs.next()){              </span>
+<span class="nc" id="L126">                EstoqueDAO e = new EstoqueDAO();</span>
+                
+<span class="nc" id="L128">                e.setCod_produto(rs.getInt(&quot;cod_produto&quot;));</span>
+<span class="nc" id="L129">                e.setNome_produto(rs.getString(&quot;nome_produto&quot;));</span>
+<span class="nc" id="L130">                e.setQnt_produto(rs.getInt(&quot;qnt_produto&quot;));</span>
+<span class="nc" id="L131">                e.setPreco_produto_compra(rs.getFloat(&quot;preco_produto_compra&quot;));</span>
+<span class="nc" id="L132">                e.setPreco_produto_venda(rs.getFloat(&quot;preco_produto_venda&quot;));</span>
+<span class="nc" id="L133">                e.setValidade_produto(rs.getDate(&quot;validade_produto&quot;));</span>
+                
+<span class="nc" id="L135">            est.add(e);</span>
+<span class="nc" id="L136">            }   </span>
+<span class="nc bnc" id="L137" title="All 8 branches missed.">        }</span>
+        
+<span class="nc" id="L139">       desconBD();</span>
+        
+<span class="nc" id="L141">       return est; </span>
+        }
+        
+         public void atualizaQnt(int cod_produto, int qnt_produto) throws SQLException, EntradaInvalidaException{
+<span class="nc" id="L145">             getConnection();</span>
+<span class="nc" id="L146">             state = conexao.createStatement();</span>
+ 
+<span class="nc" id="L148">            state.executeUpdate(&quot;update ESTOQUE set qnt_produto= &quot;+qnt_produto+&quot; where cod_produto= &quot;+cod_produto+&quot;;&quot;);</span>
+<span class="nc" id="L149">            desconBD();</span>
+<span class="nc" id="L150">         }</span>
+        
+        public boolean excluirProduto(int codigo) throws SQLException{
+<span class="nc" id="L153">        getConnection();</span>
+<span class="nc" id="L154">        state = conexao.createStatement();</span>
+<span class="nc" id="L155">        state.executeUpdate(&quot;delete from ESTOQUE where cod_produto = '&quot;+codigo+&quot;'&quot;);</span>
+<span class="nc" id="L156">        desconBD(); </span>
+<span class="nc" id="L157">        return true;</span>
+    }
+        
+    public List&lt;ClienteDAO&gt; consulTodosCli() throws SQLException{
+        
+<span class="nc" id="L162">    List&lt;ClienteDAO&gt; clis = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L163">        getConnection();</span>
+        
+<span class="nc" id="L165">        try (PreparedStatement pstm = conexao.prepareStatement(&quot;select nome_cliente, cnpj, cidade, bairro from cliente&quot;)) {</span>
+<span class="nc" id="L166">            ResultSet rs = pstm.executeQuery();</span>
+           
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            while(rs.next()){              </span>
+<span class="nc" id="L169">                ClienteDAO cli = new ClienteDAO();</span>
+                
+<span class="nc" id="L171">                cli.setNome(rs.getString(&quot;nome_cliente&quot;));</span>
+<span class="nc" id="L172">                cli.setCnpj(rs.getString(&quot;cnpj&quot;));</span>
+<span class="nc" id="L173">                cli.setCidade(rs.getString(&quot;cidade&quot;));</span>
+<span class="nc" id="L174">                cli.setBairro(rs.getString(&quot;bairro&quot;));</span>
+                
+                
+<span class="nc" id="L177">            clis.add(cli);</span>
+<span class="nc" id="L178">            }   </span>
+<span class="nc bnc" id="L179" title="All 8 branches missed.">        }</span>
+        
+<span class="nc" id="L181">       desconBD();</span>
+        
+<span class="nc" id="L183">       return clis; </span>
+        
+    }
+    
+    public List&lt;ClienteDAO&gt; consultaEspecCliente(String nome) throws SQLException{
+        
+<span class="fc" id="L189">        List&lt;ClienteDAO&gt; clis = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L190">        getConnection();</span>
+        
+<span class="fc" id="L192">        try (PreparedStatement pstm = conexao.prepareStatement(&quot;select nome_cliente, cnpj, cidade, bairro from cliente where nome_produto like '%&quot;+nome+&quot;%'&quot;)) {</span>
+<span class="nc" id="L193">            ResultSet rs = pstm.executeQuery();</span>
+           
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            while(rs.next()){              </span>
+<span class="nc" id="L196">                ClienteDAO cli = new ClienteDAO();</span>
+                
+<span class="nc" id="L198">                cli.setNome(rs.getString(&quot;nome_cliente&quot;));</span>
+<span class="nc" id="L199">                cli.setCnpj(rs.getString(&quot;cnpj&quot;));</span>
+<span class="nc" id="L200">                cli.setCidade(rs.getString(&quot;cidade&quot;));</span>
+<span class="nc" id="L201">                cli.setBairro(rs.getString(&quot;bairro&quot;));</span>
+                
+<span class="nc" id="L203">            clis.add(cli);</span>
+<span class="nc" id="L204">            }   </span>
+<span class="pc bpc" id="L205" title="6 of 8 branches missed.">        }</span>
+        
+<span class="nc" id="L207">       desconBD();</span>
+        
+<span class="nc" id="L209">       return clis; </span>
+        }
+       
+}
+    
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

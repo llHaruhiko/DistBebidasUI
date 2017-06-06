@@ -38,7 +38,9 @@ public class DistBebidasUI extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItemComprar = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItemVenda = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -80,6 +82,11 @@ public class DistBebidasUI extends javax.swing.JFrame {
         jMenuGerenciar.setText("Gerenciar");
 
         jMenuItem5.setText("Clientes");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenuGerenciar.add(jMenuItem5);
 
         jMenuItem6.setText("Fornecedores");
@@ -90,9 +97,27 @@ public class DistBebidasUI extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Compra");
+
+        jMenuItemComprar.setText("Comprar");
+        jMenuItemComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemComprarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemComprar);
+
         jMenuBar1.add(jMenu2);
 
         jMenu4.setText("Venda");
+
+        jMenuItemVenda.setText("Vender");
+        jMenuItemVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemVendaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItemVenda);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Estoque");
@@ -149,7 +174,8 @@ public class DistBebidasUI extends javax.swing.JFrame {
     private void jMenuItemCadastroFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemCadastroFornecedorMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemCadastroFornecedorMouseClicked
-
+        
+    
     private void jMenuItemCadastroFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroFornecedorActionPerformed
             // TODO add your handling code here:
         new TelaCadastroFornecedor().setVisible(true);
@@ -167,6 +193,24 @@ public class DistBebidasUI extends javax.swing.JFrame {
         DistBebidasUI.this.dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        new TelaConsultarCliente().setVisible(true);
+        DistBebidasUI.this.dispose();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItemComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemComprarActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastroCompras().setVisible(true);
+        DistBebidasUI.this.dispose();
+    }//GEN-LAST:event_jMenuItemComprarActionPerformed
+
+    private void jMenuItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVendaActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastroVendas().setVisible(true);
+        DistBebidasUI.this.dispose();
+    }//GEN-LAST:event_jMenuItemVendaActionPerformed
+       
     
     /**
      * @param args the command line arguments
@@ -219,5 +263,7 @@ public class DistBebidasUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemCadastroCliente;
     private javax.swing.JMenuItem jMenuItemCadastroFornecedor;
+    private javax.swing.JMenuItem jMenuItemComprar;
+    private javax.swing.JMenuItem jMenuItemVenda;
     // End of variables declaration//GEN-END:variables
 }

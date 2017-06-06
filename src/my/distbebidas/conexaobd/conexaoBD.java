@@ -15,9 +15,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import my.distbebidas.TelaCadastroFornecedor;
 import my.distbebidas.EntradaInvalidaException;
-import my.distbebidas.ClienteDAO;
 import my.distbebidas.ComprasDAO;
 import my.distbebidas.VendasDAO;
+import my.distbebidas.ClienteDAO;
 import my.distbebidas.EstoqueDAO;
 
 public class conexaoBD {
@@ -89,56 +89,56 @@ public class conexaoBD {
     }
     public List<EstoqueDAO> consultaTodos() throws SQLException{
         
-    List<EstoqueDAO> clis = new ArrayList<>();
+    List<EstoqueDAO> est = new ArrayList<>();
         getConnection();
         
         try (PreparedStatement pstm = conexao.prepareStatement("select cod_produto, nome_produto, qnt_produto, preco_produto_compra, preco_produto_venda, validade_produto from ESTOQUE")) {
             ResultSet rs = pstm.executeQuery();
            
             while(rs.next()){              
-                EstoqueDAO est = new EstoqueDAO();
+                EstoqueDAO e = new EstoqueDAO();
                 
-                est.setCod_produto(rs.getInt("cod_produto"));
-                est.setNome_produto(rs.getString("nome_produto"));
-                est.setQnt_produto(rs.getInt("qnt_produto"));
-                est.setPreco_produto_compra(rs.getFloat("preco_produto_compra"));
-                est.setPreco_produto_venda(rs.getFloat("preco_produto_venda"));
-                est.setValidade_produto(rs.getDate("validade_produto"));
+                e.setCod_produto(rs.getInt("cod_produto"));
+                e.setNome_produto(rs.getString("nome_produto"));
+                e.setQnt_produto(rs.getInt("qnt_produto"));
+                e.setPreco_produto_compra(rs.getFloat("preco_produto_compra"));
+                e.setPreco_produto_venda(rs.getFloat("preco_produto_venda"));
+                e.setValidade_produto(rs.getDate("validade_produto"));
                 
-            clis.add(est);
+            est.add(e);
             }   
         }
         
        desconBD();
         
-       return clis; 
+       return est; 
         
     }
         public List<EstoqueDAO> consultaEspec(String nome) throws SQLException{
         
-        List<EstoqueDAO> clis = new ArrayList<>();
+        List<EstoqueDAO> est = new ArrayList<>();
         getConnection();
         
         try (PreparedStatement pstm = conexao.prepareStatement("select cod_produto, nome_produto, qnt_produto, preco_produto_compra, preco_produto_venda, validade_produto from ESTOQUE where nome_produto like '%"+nome+"%'")) {
             ResultSet rs = pstm.executeQuery();
            
             while(rs.next()){              
-                EstoqueDAO est = new EstoqueDAO();
+                EstoqueDAO e = new EstoqueDAO();
                 
-                est.setCod_produto(rs.getInt("cod_produto"));
-                est.setNome_produto(rs.getString("nome_produto"));
-                est.setQnt_produto(rs.getInt("qnt_produto"));
-                est.setPreco_produto_compra(rs.getFloat("preco_produto_compra"));
-                est.setPreco_produto_venda(rs.getFloat("preco_produto_venda"));
-                est.setValidade_produto(rs.getDate("validade_produto"));
+                e.setCod_produto(rs.getInt("cod_produto"));
+                e.setNome_produto(rs.getString("nome_produto"));
+                e.setQnt_produto(rs.getInt("qnt_produto"));
+                e.setPreco_produto_compra(rs.getFloat("preco_produto_compra"));
+                e.setPreco_produto_venda(rs.getFloat("preco_produto_venda"));
+                e.setValidade_produto(rs.getDate("validade_produto"));
                 
-            clis.add(est);
+            est.add(e);
             }   
         }
         
        desconBD();
         
-       return clis; 
+       return est; 
         }
         
          public void atualizaQnt(int cod_produto, int qnt_produto) throws SQLException, EntradaInvalidaException{
@@ -156,6 +156,58 @@ public class conexaoBD {
         desconBD(); 
         return true;
     }
+        
+    public List<ClienteDAO> consulTodosCli() throws SQLException{
+        
+    List<ClienteDAO> clis = new ArrayList<>();
+        getConnection();
+        
+        try (PreparedStatement pstm = conexao.prepareStatement("select nome_cliente, cnpj, cidade, bairro from cliente")) {
+            ResultSet rs = pstm.executeQuery();
+           
+            while(rs.next()){              
+                ClienteDAO cli = new ClienteDAO();
+                
+                cli.setNome(rs.getString("nome_cliente"));
+                cli.setCnpj(rs.getString("cnpj"));
+                cli.setCidade(rs.getString("cidade"));
+                cli.setBairro(rs.getString("bairro"));
+                
+                
+            clis.add(cli);
+            }   
+        }
+        
+       desconBD();
+        
+       return clis; 
+        
+    }
+    
+    public List<ClienteDAO> consultaEspecCliente(String nome) throws SQLException{
+        
+        List<ClienteDAO> clis = new ArrayList<>();
+        getConnection();
+        
+        try (PreparedStatement pstm = conexao.prepareStatement("select nome_cliente, cnpj, cidade, bairro from cliente where nome_produto like '%"+nome+"%'")) {
+            ResultSet rs = pstm.executeQuery();
+           
+            while(rs.next()){              
+                ClienteDAO cli = new ClienteDAO();
+                
+                cli.setNome(rs.getString("nome_cliente"));
+                cli.setCnpj(rs.getString("cnpj"));
+                cli.setCidade(rs.getString("cidade"));
+                cli.setBairro(rs.getString("bairro"));
+                
+            clis.add(cli);
+            }   
+        }
+        
+       desconBD();
+        
+       return clis; 
+        }
        
 }
     
