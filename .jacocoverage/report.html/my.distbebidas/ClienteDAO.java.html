@@ -17,35 +17,35 @@ public class ClienteDAO {
     
     
 
-<span class="nc" id="L20">    public ClienteDAO(String nome, String cnpj, String inscricaoestadual, String endereco, String bairro, String cep, String cidade, String email, String telefone, String celular, String uf) {</span>
-<span class="nc" id="L21">        this.cnpj = cnpj;</span>
-<span class="nc" id="L22">        this.inscricaoestadual = inscricaoestadual;</span>
-<span class="nc" id="L23">        this.nome = nome;</span>
-<span class="nc" id="L24">        this.endereco = endereco;</span>
-<span class="nc" id="L25">        this.bairro = bairro;</span>
-<span class="nc" id="L26">        this.cep = cep;</span>
-<span class="nc" id="L27">        this.cidade = cidade;</span>
-<span class="nc" id="L28">        this.email = email;</span>
-<span class="nc" id="L29">        this.telefone = telefone;</span>
-<span class="nc" id="L30">        this.celular = celular;</span>
-<span class="nc" id="L31">        this.uf = uf;	</span>
-<span class="nc" id="L32">    }</span>
+<span class="fc" id="L20">    public ClienteDAO(String nome, String cnpj, String inscricaoestadual, String endereco, String bairro, String cep, String cidade, String email, String telefone, String celular, String uf) {</span>
+<span class="fc" id="L21">        this.cnpj = cnpj;</span>
+<span class="fc" id="L22">        this.inscricaoestadual = inscricaoestadual;</span>
+<span class="fc" id="L23">        this.nome = nome;</span>
+<span class="fc" id="L24">        this.endereco = endereco;</span>
+<span class="fc" id="L25">        this.bairro = bairro;</span>
+<span class="fc" id="L26">        this.cep = cep;</span>
+<span class="fc" id="L27">        this.cidade = cidade;</span>
+<span class="fc" id="L28">        this.email = email;</span>
+<span class="fc" id="L29">        this.telefone = telefone;</span>
+<span class="fc" id="L30">        this.celular = celular;</span>
+<span class="fc" id="L31">        this.uf = uf;	</span>
+<span class="fc" id="L32">    }</span>
 
    
 
 
 
 
-<span class="nc" id="L39">    public ClienteDAO(){</span>
-<span class="nc" id="L40">    }</span>
+<span class="fc" id="L39">    public ClienteDAO(){</span>
+<span class="fc" id="L40">    }</span>
     
         /*Utilizado nos testes (retorna true/false para realizar as comparações)*/
     public int insereCliente(){
-<span class="nc" id="L44">        conexaoBD conexao = new conexaoBD();</span>
+<span class="fc" id="L44">        conexaoBD conexao = new conexaoBD();</span>
          
         try{
-<span class="nc" id="L47">            conexao.insereDadosCliente(this);</span>
-<span class="nc" id="L48">            return 1;</span>
+<span class="fc" id="L47">            conexao.insereDadosCliente(this);</span>
+<span class="fc" id="L48">            return 1;</span>
         }
 <span class="nc" id="L50">        catch(Exception ex){</span>
             //throw new EntradaInvalidaException(&quot;&quot;+ex);
@@ -58,21 +58,21 @@ public class ClienteDAO {
      * @return the cnpj
      */
     public String getCnpj() {
-<span class="nc" id="L61">        return cnpj;</span>
+<span class="fc" id="L61">        return cnpj;</span>
     }
 
     /**
      * @param cnpj the cnpj to set
      */
     public void setCnpj(String cnpj) {
-<span class="nc" id="L68">        this.cnpj = cnpj;</span>
-<span class="nc" id="L69">    }</span>
+<span class="fc" id="L68">        this.cnpj = cnpj;</span>
+<span class="fc" id="L69">    }</span>
 
     /**
      * @return the inscricaoestadual
      */
     public String getInscricaoestadual() {
-<span class="nc" id="L75">        return inscricaoestadual;</span>
+<span class="fc" id="L75">        return inscricaoestadual;</span>
     }
 
     /**
@@ -86,21 +86,21 @@ public class ClienteDAO {
      * @return the nome
      */
     public String getNome() {
-<span class="nc" id="L89">        return nome;</span>
+<span class="fc" id="L89">        return nome;</span>
     }
 
     /**
      * @param nome the nome to set
      */
     public void setNome(String nome) {
-<span class="nc" id="L96">        this.nome = nome;</span>
-<span class="nc" id="L97">    }</span>
+<span class="fc" id="L96">        this.nome = nome;</span>
+<span class="fc" id="L97">    }</span>
 
     /**
      * @return the endereco
      */
     public String getEndereco() {
-<span class="nc" id="L103">        return endereco;</span>
+<span class="fc" id="L103">        return endereco;</span>
     }
 
     /**
@@ -114,21 +114,21 @@ public class ClienteDAO {
      * @return the bairro
      */
     public String getBairro() {
-<span class="nc" id="L117">        return bairro;</span>
+<span class="fc" id="L117">        return bairro;</span>
     }
 
     /**
      * @param bairro the bairro to set
      */
     public void setBairro(String bairro) {
-<span class="nc" id="L124">        this.bairro = bairro;</span>
-<span class="nc" id="L125">    }</span>
+<span class="fc" id="L124">        this.bairro = bairro;</span>
+<span class="fc" id="L125">    }</span>
 
     /**
      * @return the cep
      */
     public String getCep() {
-<span class="nc" id="L131">        return cep;</span>
+<span class="fc" id="L131">        return cep;</span>
     }
 
     /**
@@ -142,21 +142,21 @@ public class ClienteDAO {
      * @return the cidade
      */
     public String getCidade() {
-<span class="nc" id="L145">        return cidade;</span>
+<span class="fc" id="L145">        return cidade;</span>
     }
 
     /**
      * @param cidade the cidade to set
      */
     public void setCidade(String cidade) {
-<span class="nc" id="L152">        this.cidade = cidade;</span>
-<span class="nc" id="L153">    }</span>
+<span class="fc" id="L152">        this.cidade = cidade;</span>
+<span class="fc" id="L153">    }</span>
 
     /**
      * @return the email
      */
     public String getEmail() {
-<span class="nc" id="L159">        return email;</span>
+<span class="fc" id="L159">        return email;</span>
     }
 
     /**
@@ -170,7 +170,7 @@ public class ClienteDAO {
      * @return the telefone
      */
     public String getTelefone() {
-<span class="nc" id="L173">        return telefone;</span>
+<span class="fc" id="L173">        return telefone;</span>
     }
 
     /**
@@ -184,7 +184,7 @@ public class ClienteDAO {
      * @return the celular
      */
     public String getCelular() {
-<span class="nc" id="L187">        return celular;</span>
+<span class="fc" id="L187">        return celular;</span>
     }
 
     /**
@@ -198,7 +198,7 @@ public class ClienteDAO {
      * @return the uf
      */
     public String getUf() {
-<span class="nc" id="L201">        return uf;</span>
+<span class="fc" id="L201">        return uf;</span>
     }
 
     /**

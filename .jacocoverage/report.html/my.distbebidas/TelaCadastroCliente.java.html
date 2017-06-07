@@ -125,15 +125,15 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 <span class="fc" id="L125">        jButtonCadastrarCliente.setText(&quot;Cadastrar&quot;);</span>
 <span class="fc" id="L126">        jButtonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="nc" id="L128">                jButtonCadastrarClienteActionPerformed(evt);</span>
-<span class="nc" id="L129">            }</span>
+<span class="fc" id="L128">                jButtonCadastrarClienteActionPerformed(evt);</span>
+<span class="fc" id="L129">            }</span>
         });
 
 <span class="fc" id="L132">        jButtonCancelarCadastroCliente.setText(&quot;Cancelar&quot;);</span>
 <span class="fc" id="L133">        jButtonCancelarCadastroCliente.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="fc" id="L135">                jButtonCancelarCadastroClienteActionPerformed(evt);</span>
-<span class="fc" id="L136">            }</span>
+<span class="nc" id="L135">                jButtonCancelarCadastroClienteActionPerformed(evt);</span>
+<span class="nc" id="L136">            }</span>
         });
 
 <span class="fc" id="L139">        jLabel5.setText(&quot;CEP&quot;);</span>
@@ -316,41 +316,41 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
     private void jButtonCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClienteActionPerformed
         // TODO add your handling code here:
-<span class="nc" id="L319">        String cnpj = jFormattedTextFieldCNPJCliente.getText();</span>
-<span class="nc" id="L320">        String nome = jTextFieldNome.getText();</span>
-<span class="nc" id="L321">        String inscricaoestadual = jFormattedTextFieldInscEstadualCliente.getText();</span>
-<span class="nc" id="L322">        String endereco = jTextFieldEndereco.getText();</span>
-<span class="nc" id="L323">        String bairro = jTextFieldBairro.getText();</span>
-<span class="nc" id="L324">        String cep = jFormattedTextFieldCEP.getText();</span>
-<span class="nc" id="L325">        String cidade = jTextFieldCidade.getText();</span>
-<span class="nc" id="L326">        String email = jTextFieldEmail.getText();</span>
-<span class="nc" id="L327">        String telefone = jFormattedTextFieldTelefone.getText();</span>
-<span class="nc" id="L328">        String celular = jFormattedTextFieldCelular.getText();</span>
-<span class="nc" id="L329">        String uf = (String) jComboBoxEstado.getSelectedItem();</span>
+<span class="fc" id="L319">        String cnpj = jFormattedTextFieldCNPJCliente.getText();</span>
+<span class="fc" id="L320">        String nome = jTextFieldNome.getText();</span>
+<span class="fc" id="L321">        String inscricaoestadual = jFormattedTextFieldInscEstadualCliente.getText();</span>
+<span class="fc" id="L322">        String endereco = jTextFieldEndereco.getText();</span>
+<span class="fc" id="L323">        String bairro = jTextFieldBairro.getText();</span>
+<span class="fc" id="L324">        String cep = jFormattedTextFieldCEP.getText();</span>
+<span class="fc" id="L325">        String cidade = jTextFieldCidade.getText();</span>
+<span class="fc" id="L326">        String email = jTextFieldEmail.getText();</span>
+<span class="fc" id="L327">        String telefone = jFormattedTextFieldTelefone.getText();</span>
+<span class="fc" id="L328">        String celular = jFormattedTextFieldCelular.getText();</span>
+<span class="fc" id="L329">        String uf = (String) jComboBoxEstado.getSelectedItem();</span>
 
         /*Verifica se há campos obr. vazios. Se não tiver, faz a inserção no BD .*/
-<span class="nc" id="L332">        ClienteDAO cliente = new ClienteDAO(nome, cnpj, inscricaoestadual, endereco, bairro, cep, cidade, email, telefone, celular, uf);</span>
+<span class="fc" id="L332">        ClienteDAO cliente = new ClienteDAO(nome, cnpj, inscricaoestadual, endereco, bairro, cep, cidade, email, telefone, celular, uf);</span>
 
-<span class="nc bnc" id="L334" title="All 6 branches missed.">        if( (!jFormattedTextFieldCNPJCliente.getText().equals(jFormattedTextFieldCNPJCliente.getValue())) ||(!jFormattedTextFieldInscEstadualCliente.getText().equals(jFormattedTextFieldInscEstadualCliente.getValue())) || jTextFieldNome.getText().isEmpty()||</span>
-<span class="nc bnc" id="L335" title="All 4 branches missed.">            jFormattedTextFieldCEP.getText().isEmpty() ||  (!jFormattedTextFieldTelefone.getText().equals(jFormattedTextFieldTelefone.getValue()))){</span>
-<span class="nc" id="L336">            JOptionPane.showMessageDialog(null,&quot;Alguns dos campos obrigatórios estão vazios!&quot;);</span>
+<span class="pc bpc" id="L334" title="1 of 6 branches missed.">        if( (!jFormattedTextFieldCNPJCliente.getText().equals(jFormattedTextFieldCNPJCliente.getValue())) ||(!jFormattedTextFieldInscEstadualCliente.getText().equals(jFormattedTextFieldInscEstadualCliente.getValue())) || jTextFieldNome.getText().isEmpty()||</span>
+<span class="pc bpc" id="L335" title="1 of 4 branches missed.">            jFormattedTextFieldCEP.getText().isEmpty() ||  (!jFormattedTextFieldTelefone.getText().equals(jFormattedTextFieldTelefone.getValue()))){</span>
+<span class="fc" id="L336">            JOptionPane.showMessageDialog(null,&quot;Alguns dos campos obrigatórios estão vazios!&quot;);</span>
         }else{           
-<span class="nc bnc" id="L338" title="All 2 branches missed.">                if(cliente.insereCliente()==1){</span>
-<span class="nc" id="L339">                    JOptionPane.showMessageDialog(null, &quot;Cadastrado com sucesso!&quot;);</span>
-<span class="nc" id="L340">                    dispose();</span>
-<span class="nc" id="L341">                    new DistBebidasUI().setVisible(true);</span>
+<span class="pc bpc" id="L338" title="1 of 2 branches missed.">                if(cliente.insereCliente()==1){</span>
+<span class="fc" id="L339">                    JOptionPane.showMessageDialog(null, &quot;Cadastrado com sucesso!&quot;);</span>
+<span class="fc" id="L340">                    dispose();</span>
+<span class="fc" id="L341">                    new DistBebidasUI().setVisible(true);</span>
                 }else{
 <span class="nc" id="L343">                    System.out.println(cliente.insereCliente());</span>
 <span class="nc" id="L344">                    JOptionPane.showMessageDialog(null, &quot;Houve um erro ao cadastrar!&quot;,&quot;Erro ao cadastrar&quot;,JOptionPane.ERROR_MESSAGE,null);</span>
                 }
             }
-<span class="nc" id="L347">    }//GEN-LAST:event_jButtonCadastrarClienteActionPerformed</span>
+<span class="fc" id="L347">    }//GEN-LAST:event_jButtonCadastrarClienteActionPerformed</span>
 
     private void jButtonCancelarCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarCadastroClienteActionPerformed
         // TODO add your handling code here:
-<span class="fc" id="L351">        TelaCadastroCliente.this.dispose();</span>
-<span class="fc" id="L352">        new DistBebidasUI().setVisible(true);</span>
-<span class="fc" id="L353">    }//GEN-LAST:event_jButtonCancelarCadastroClienteActionPerformed</span>
+<span class="nc" id="L351">        TelaCadastroCliente.this.dispose();</span>
+<span class="nc" id="L352">        new DistBebidasUI().setVisible(true);</span>
+<span class="nc" id="L353">    }//GEN-LAST:event_jButtonCancelarCadastroClienteActionPerformed</span>
 
     private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoActionPerformed
         // TODO add your handling code here:
